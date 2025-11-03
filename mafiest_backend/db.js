@@ -9,12 +9,16 @@ const sequelize = new Sequelize(
     host: config.DATABASE_CONFIG.host,
     dialect: config.DATABASE_CONFIG.dialect,
     port: config.DATABASE_CONFIG.port,
-    logging: false,
+    logging: console.log,
     pool: {
       max: 5,
       min: 0,
       acquire: 30000,
       idle: 10000
+    },
+    define: {
+      timestamps: true,
+      underscored: true
     }
   }
 )
@@ -25,7 +29,7 @@ const connectDB = async () => {
     console.log('Database connection has been established successfully.')
     
     // Sincronizar modelos con la base de datos
-    await sequelize.sync({ alter: true })
+  await sequelize.sync({ force: true })
     console.log('All models were synchronized successfully.')
   } catch (error) {
     console.error('Unable to connect to the database:', error)

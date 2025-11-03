@@ -1,36 +1,32 @@
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('../db');
-
-const Contacto = sequelize.define('Contacto', {
-  id: {
-    type: DataTypes.INTEGER,
-    primaryKey: true,
-    autoIncrement: true
-  },
-  username: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  name: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  number: {
-    type: DataTypes.STRING,
-    allowNull: false
-  },
-  email: {
-    type: DataTypes.STRING,
-    validate: {
-      isEmail: true
+module.exports = (sequelize, DataTypes) => {
+  const Contacto = sequelize.define('Contacto', {
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        isEmail: true
+      }
+    },
+    asunto: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    mensaje: {
+      type: DataTypes.TEXT,
+      allowNull: false
     }
-  },
-  comments: {
-    type: DataTypes.TEXT
-  }
-}, {
-  tableName: 'contactos',
-  timestamps: true
-});
-
-module.exports = Contacto;
+  }, {
+    tableName: 'contactos',
+    timestamps: true
+  });
+  return Contacto;
+};

@@ -1,6 +1,4 @@
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('../db');
-
+module.exports = (sequelize, DataTypes) => {
 const User = sequelize.define('User', {
   id: {
     type: DataTypes.INTEGER,
@@ -12,7 +10,7 @@ const User = sequelize.define('User', {
     allowNull: false,
     unique: true
   },
-  name: {
+  nombre: {  // Cambiado de name a nombre para mantener consistencia
     type: DataTypes.STRING,
     allowNull: false
   },
@@ -33,14 +31,63 @@ const User = sequelize.define('User', {
   rol: {
     type: DataTypes.ENUM('independiente', 'estudiante', 'docente', 'administrador'),
     allowNull: false
-  },
-  grupoId: {
-    type: DataTypes.INTEGER,
-    allowNull: true
   }
 }, {
-  tableName: 'Users', // Match the table name in foreign key references
-  timestamps: true
+  tableName: 'users',
+  timestamps: true,
+  indexes: [
+    {
+      fields: ['rol']
+    }
+  ]
 });
 
-module.exports = User;
+User.associate = (models) => {
+  // Asociación con asesorias_usuarios
+  User.hasMany(models.AsesoriasUsuarios, {
+    foreignKey: 'userId',
+    as: 'asesoriasUsuarios'
+  });
+  // Relación muchos a muchos con Grupo
+  User.belongsToMany(models.Grupo, {
+    through: 'grupo_usuarios',
+    as: 'grupos',
+    foreignKey: 'user_id',
+    otherKey: 'grupo_id'
+  });
+
+  // Relación con Actividad (creador)
+  User.hasMany(models.Actividad, {
+    foreignKey: 'creadorId',
+    as: 'actividades'
+  });
+
+  // Relación con Grabacion
+  User.hasMany(models.Grabacion, {
+    foreignKey: 'userId',
+    as: 'grabaciones'
+  });
+
+
+  // Relación con Asesoria (como docente)
+  User.hasMany(models.Asesoria, {
+    foreignKey: 'docenteId',
+    as: 'asesoriasImpartidas'
+  });
+
+  // Relación muchos a muchos con Asesoria (solicitadas)
+  User.belongsToMany(models.Asesoria, {
+    through: models.AsesoriasUsuarios,
+    as: 'asesoriasSolicitadas',
+    foreignKey: 'userId',
+    otherKey: 'asesoriaId'
+  });
+
+  // Relación con RespuestaActividad
+  User.hasMany(models.RespuestaActividad, {
+    foreignKey: 'userId',
+    as: 'respuestasActividades'
+  });
+};
+return User;
+};

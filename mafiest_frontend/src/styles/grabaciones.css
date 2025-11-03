@@ -1,0 +1,256 @@
+.form-control::placeholder {
+  color: #b3d8ff;
+  opacity: 1;
+}
+
+select.form-control, select.form-control option {
+  color: #fff;
+  background: #232b47;
+}
+
+select.form-control:focus option {
+  background: #232b47;
+  color: #fff;
+}
+/* Inputs y selects del formulario de grabaciones */
+.form-control[type="url"],
+.form-control[type="text"],
+.form-control[type="email"],
+.form-control[type="password"],
+.form-control[type="number"],
+.form-control[type="date"],
+.form-control[type="time"],
+.form-control[type="datetime-local"],
+.form-control[type="search"],
+.form-control[type="tel"],
+.form-control[type="file"],
+.form-control,
+select.form-control {
+  background: linear-gradient(90deg, #232b47 0%, #10182b 100%);
+  color: #fff;
+  border: 1.5px solid #3fa6ff;
+  box-shadow: 0 2px 8px #0002;
+  font-weight: 500;
+  border-radius: 10px;
+  transition: border-color 0.2s;
+}
+
+.form-control:focus, select.form-control:focus {
+  border-color: #2998ff;
+  outline: none;
+  background: linear-gradient(90deg, #232b47 0%, #10182b 100%);
+  color: #fff;
+}
+/* Tarjeta de actividad: fondo oscuro, compacta y centrada */
+.actividad-card-custom {
+  background: linear-gradient(135deg, #1a2238 0%, #0b1027 100%) !important;
+  color: #fff !important;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.13);
+  padding: 1.1rem 1.2rem;
+  margin-bottom: 1.2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1.5px solid #232b47;
+}
+.gestion-container {
+  padding: 2rem 1rem;
+  background: linear-gradient(135deg, #1a2238 0%, #0b1027 100%);
+  min-height: 100vh;
+}
+
+/* Título */
+.gestion-container h2 {
+  font-size: 1.8rem;
+  color: #1e293b;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Botones superiores (nueva grabación, filtrar, etc.) */
+.btn-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 2rem;
+}
+
+.btn-group button,
+.btn-group a {
+  background-color: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-decoration: none;
+}
+
+.btn-group button:hover,
+.btn-group a:hover {
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+/* Tarjetas de grabación */
+.grabacion-card {
+  background: linear-gradient(135deg, #1a2238 0%, #0b1027 100%);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  padding: 1.1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1.5px solid #232b47;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  margin-bottom: 1.2rem;
+}
+
+.boton-filtro {
+  min-width: 220px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 1.1rem;
+  background: linear-gradient(90deg, #3fa6ff 0%, #2563eb 100%);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 2px 8px #0002;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  border: none;
+}
+
+
+.grabaciones-filtros-dropdown {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+/* Botones base */
+.boton-filt {
+  background-color: #1e293b; /* azul grisáceo oscuro */
+  color: #e2e8f0; /* texto claro */
+  border: 1px solid #3b82f6; /* borde azul medio */
+  border-radius: 10px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Efecto al pasar el mouse */
+.boton-filt:hover {
+  background-color: #2563eb; /* azul más vivo */
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
+}
+
+/* Botón activo (seleccionado) */
+.boton-filt.activo {
+  background-color: #3b82f6; /* azul medio */
+  color: #fff;
+  border-color: #60a5fa;
+  box-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+  transform: scale(1.03);
+}
+
+
+.grabacion-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Título de la grabación */
+.grabacion-header h3 {
+  margin: 0;
+  font-size: 1.8rem;
+  color: #fff !important;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+/* Descripción o detalles */
+.grabacion-body {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+/* Descripción o detalles */
+.grabacion-body {
+  color: #475569;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Información adicional */
+.grabacion-info {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+/* Acciones (botones "Ver grabación", etc.) */
+.grabacion-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.grabacion-actions a,
+.grabacion-actions button,
+.grabacion-actions a {
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.grabacion-actions a:hover,
+.grabacion-actions button:hover,
+.grabacion-actions a:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+/* Etiquetas o badges */
+.badge {
+  background-color: #e0e7ff;
+  color: #3730a3;
+  padding: 0.35em 0.75em;
+  font-size: 0.75rem;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

@@ -1,13 +1,20 @@
+const express = require('express');
+const usersRouter = express.Router();
+const { User, Grupo } = require('../models');
+const bcrypt = require('bcrypt');
+
+const validRoles = ['independiente', 'estudiante', 'docente', 'administrador'];
+
 // Edit user info (self-update)
 usersRouter.patch('/:id', async (request, response) => {
   try {
     const id = request.params.id;
-    const { name, email, password, username } = request.body;
+    const { nombre, email, password, username } = request.body;
     const user = await User.findByPk(id);
     if (!user) {
       return response.status(404).json({ error: 'User not found' });
     }
-    if (name) user.name = name;
+    if (nombre) user.nombre = nombre;
     if (email) user.email = email;
     if (username) user.username = username;
     if (password) {
@@ -15,44 +22,61 @@ usersRouter.patch('/:id', async (request, response) => {
       user.passwordHash = await bcrypt.hash(password, saltRounds);
     }
     await user.save();
+
+    // Obtener el usuario actualizado con sus grupos
+    const updatedUser = await User.findByPk(user.id, {
+      include: [{
+        model: Grupo,
+        as: 'grupos',
+        attributes: ['id', 'nombre'],
+        through: { attributes: [] }
+      }]
+    });
+
     response.json({
-      id: user.id,
-      username: user.username,
-      name: user.name,
-      email: user.email,
-      rol: user.rol,
-      grupoId: user.grupoId
+      id: updatedUser.id,
+      username: updatedUser.username,
+      nombre: updatedUser.nombre,
+      email: updatedUser.email,
+      rol: updatedUser.rol,
+      grupos: updatedUser.grupos
     });
   } catch (error) {
     response.status(400).json({ error: error.message });
   }
 });
-const usersRouter = require('express').Router();
-const { User } = require('../models');
-const bcrypt = require('bcrypt');
 
 // Get all users
 usersRouter.get('/', async (request, response) => {
   try {
     const users = await User.findAll({
-      where: {},
-  attributes: ['id', 'username', 'name', 'email', 'rol', 'grupoId']
+      attributes: ['id', 'username', 'nombre', 'email', 'rol'],
+      include: [{
+        model: Grupo,
+        as: 'grupos',
+        attributes: ['id', 'nombre', 'descripcion'],
+        through: { attributes: [] }
+      }],
+      order: [
+        ['id', 'ASC'],
+        [{ model: Grupo, as: 'grupos' }, 'id', 'ASC']
+      ]
     });
     response.json(users);
   } catch (error) {
-    response.status(500).json({ error: 'Error retrieving users' });
+    console.error('Error obteniendo usuarios:', error);
+    console.error(error.stack);
+    response.status(500).json({ error: 'Error retrieving users', details: error.message });
   }
 });
-
-const validRoles = ['independiente', 'estudiante', 'docente', 'administrador'];
 
 // Create new user
 usersRouter.post('/', async (request, response) => {
   try {
-  const { username, name, email, password, rol, grupoId } = request.body;
+  const { username, nombre, email, password, rol, grupoId } = request.body;
 
     // Validate required fields
-    if (!username || !password || !name || !email) {
+    if (!username || !password || !nombre || !email) {
       return response.status(400).json({
         error: 'El usuario, contraseña, nombre y correo son requeridos'
       });
@@ -70,7 +94,7 @@ usersRouter.post('/', async (request, response) => {
 
     const user = await User.create({
       username,
-      name,
+      nombre,
       email,
       passwordHash,
       rol,
@@ -80,7 +104,7 @@ usersRouter.post('/', async (request, response) => {
     response.status(201).json({
       id: user.id,
       username: user.username,
-      name: user.name,
+      nombre: user.nombre,
       email: user.email,
       rol: user.rol,
       grupoId: user.grupoId

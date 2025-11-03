@@ -1,11 +1,16 @@
+import '../styles/auth.css';
 import { useState } from 'react';
-import * as userService from '../services/user';
+import { Link } from 'react-router-dom';
+import userService from '../services/user';
+import LandingNavbar from '../components/LandingNavbar';
+import ToastNotification from '../components/Notification';
 
-const RegistroIndependiente = ({ onSuccess, onRegistroExitoso }) => {
+const RegistroIndependiente = ({ user, setUser, onSuccess, onRegistroExitoso }) => {
   const [username, setUsername] = useState('');
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState(null);
 
   const handleSubmit = async (e) => {
@@ -13,7 +18,7 @@ const RegistroIndependiente = ({ onSuccess, onRegistroExitoso }) => {
     try {
       const newUser = {
         username,
-        name,
+          nombre: name,
         email,
         password,
         rol: 'independiente',
@@ -27,127 +32,106 @@ const RegistroIndependiente = ({ onSuccess, onRegistroExitoso }) => {
       if (onSuccess) onSuccess();
       if (onRegistroExitoso) onRegistroExitoso();
     } catch (err) {
-      setMessage({ type: false, message: err.response?.data?.error || 'Error al registrar.' });
+      let errorMsg = err.response?.data?.error || 'Error al registrar.';
+      if (errorMsg.includes('llave duplicada') || errorMsg.includes('restricción de unicidad')) {
+        errorMsg = 'El nombre de usuario o correo ya está registrado. Por favor elige otro.';
+      }
+      setMessage({ type: false, message: errorMsg });
     }
   };
 
-  const inputStyle = {
-    width: '100%',
-    padding: '12px',
-    marginBottom: '12px',
-    border: '1px solid #ddd',
-    borderRadius: '6px',
-    fontSize: '1rem',
-    transition: 'border-color 0.2s',
-    outline: 'none'
-  };
-
-  const buttonStyle = {
-    width: '100%',
-    background: '#e94560',
-    color: '#fff',
-    padding: '12px',
-    border: 'none',
-    borderRadius: '6px',
-    fontWeight: '600',
-    fontSize: '1rem',
-    cursor: 'pointer',
-    transition: 'background 0.2s',
-    marginTop: '8px'
-  };
-
   return (
-    <form onSubmit={handleSubmit}>
-      <h3 style={{ 
-        color: '#1a2238', 
-        marginBottom: '1.5rem', 
-        fontWeight: 700, 
-        fontSize: '1.5rem',
-        textAlign: 'center'
-      }}>
-        Registro Independiente
-      </h3>
-
+    <div className="auth-container">
+      <LandingNavbar user={user} setUser={setUser} />
+      {/* Toast arriba a la derecha */}
       {message && (
-        <div
-          style={{
-            padding: '12px',
-            borderRadius: '6px',
-            marginBottom: '16px',
-            background: message.type ? '#f0fdf4' : '#fef2f2',
-            color: message.type ? '#166534' : '#991b1b',
-            border: `1px solid ${message.type ? '#bbf7d0' : '#fecaca'}`
-          }}
-        >
-          {message.message}
+        <div style={{position: 'fixed', top: 30, right: 30, zIndex: 9999}}>
+          <ToastNotification show={true} type={message.type ? 'success' : 'danger'} message={message.message} onClose={() => setMessage(null)} />
         </div>
       )}
-      
-      <div style={{ marginBottom: '16px' }}>
-        <label htmlFor="username" style={{ display: 'block', marginBottom: '8px', color: '#4a5568', fontWeight: '500' }}>
-          Nombre de usuario
-        </label>
-        <input
-          id="username"
-          type="text"
-          value={username}
-          onChange={e => setUsername(e.target.value)}
-          required
-          style={inputStyle}
-        />
-      </div>
+      <div className="auth-content">
+        <div className="auth-header">
+          <h2 className="auth-title">Registro Independiente</h2>
+          <p className="auth-subtitle">Crea tu cuenta gratuita y comienza a aprender</p>
+        </div>
+        <div className="auth-form-container">
+          <form onSubmit={handleSubmit}>
+            <div className="form-group">
+              <label className="form-label">Nombre de usuario</label>
+              <input
+                type="text"
+                value={username}
+                name="Username"
+                className="form-input"
+                placeholder="Elige un nombre de usuario"
+                onChange={({ target }) => setUsername(target.value)}
+                required
+              />
+            </div>
 
-      <div style={{ marginBottom: '16px' }}>
-        <label htmlFor="fullname" style={{ display: 'block', marginBottom: '8px', color: '#4a5568', fontWeight: '500' }}>
-          Nombre completo
-        </label>
-        <input
-          id="fullname"
-          type="text"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          required
-          style={inputStyle}
-        />
-      </div>
+            <div className="form-group">
+              <label className="form-label">Nombre completo</label>
+              <input
+                type="text"
+                value={name}
+                name="Name"
+                className="form-input"
+                placeholder="Tu nombre completo"
+                onChange={({ target }) => setName(target.value)}
+                required
+              />
+            </div>
 
-      <div style={{ marginBottom: '16px' }}>
-        <label htmlFor="email" style={{ display: 'block', marginBottom: '8px', color: '#4a5568', fontWeight: '500' }}>
-          Correo electrónico
-        </label>
-        <input
-          id="email"
-          type="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-          style={inputStyle}
-        />
-      </div>
+            <div className="form-group">
+              <label className="form-label">Correo electrónico</label>
+              <input
+                type="email"
+                value={email}
+                name="Email"
+                className="form-input"
+                placeholder="tucorreo@ejemplo.com"
+                onChange={({ target }) => setEmail(target.value)}
+                required
+              />
+            </div>
 
-      <div style={{ marginBottom: '16px' }}>
-        <label htmlFor="password" style={{ display: 'block', marginBottom: '8px', color: '#4a5568', fontWeight: '500' }}>
-          Contraseña
-        </label>
-        <input
-          id="password"
-          type="password"
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-          required
-          style={inputStyle}
-        />
-      </div>
+            <div className="form-group">
+              <label className="form-label">Contraseña</label>
+              <div style={{ position: 'relative' }}>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  name="Password"
+                  className="form-input"
+                  placeholder="Crea una contraseña segura"
+                  onChange={({ target }) => setPassword(target.value)}
+                  required
+                />
+                <button
+                  type="button"
+                  style={{ position: 'absolute', right: 10, top: '50%', transform: 'translateY(-50%)', background: 'none', border: 'none', cursor: 'pointer', fontSize: '1.1em' }}
+                  onClick={() => setShowPassword((prev) => !prev)}
+                  tabIndex={-1}
+                >
+                  {showPassword ? '🙈' : '👁️'}
+                </button>
+              </div>
+            </div>
 
-      <button
-        type="submit"
-        style={buttonStyle}
-        onMouseOver={e => e.target.style.background = '#d13651'}
-        onMouseOut={e => e.target.style.background = '#e94560'}
-      >
-        Registrarme
-      </button>
-    </form>
+            <button
+              type="submit"
+              className="submit-button"
+            >
+              Crear cuenta
+            </button>
+
+            <Link to="/login" className="auth-switch-link">
+              ¿Ya tienes una cuenta? Inicia sesión aquí
+            </Link>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 

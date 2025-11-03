@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseUrl = '/api/contactos'
+const baseUrl = '/api/contactanos'
 
 const crearContacto = async (nuevoContacto) => {
   const response = await axios.post(baseUrl, nuevoContacto)

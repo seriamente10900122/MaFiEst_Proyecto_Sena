@@ -6,7 +6,7 @@ Content-Type: application/json
     "username": "Venezuelana",
     "name": "jhonatan",
     "password": "12345678910",
-    "Rol": "admin"
+    "rol": "admin"
 }
 
 ### Create new contact

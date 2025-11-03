@@ -1,12 +1,20 @@
-// src/services/userService.js
 import axios from 'axios'
 import { BASE_URL } from './config'
 
 const baseUrl = `${BASE_URL}/users`
 
+let token = null
+
+const setToken = newToken => {
+  token = `Bearer ${newToken}`
+}
+
 // Obtener todos los usuarios
 const getAll = async () => {
-  const response = await axios.get(baseUrl)
+  const config = {
+    headers: { Authorization: token }
+  }
+  const response = await axios.get(baseUrl, config)
   return response.data
 }
 
@@ -18,7 +26,10 @@ const createUser = async (userData) => {
 
 // Actualizar usuario
 const updateUser = async (id, userData) => {
-  const response = await axios.patch(`${baseUrl}/${id}`, userData)
+  const config = {
+    headers: { Authorization: token, 'Content-Type': 'application/json' }
+  }
+  const response = await axios.patch(`${baseUrl}/${id}`, userData, config)
   return response.data
 }
 
@@ -38,7 +49,6 @@ const getMakers = async () => {
 const crearUsuario = createUser
 const getAllUsuarios = getAll
 
-// Exportación unificada
 export default {
   getAll,
   createUser,
@@ -46,5 +56,6 @@ export default {
   getAllUsuarios,
   getMakers,
   deleteUser,
-  updateUser
-  }
+  updateUser,
+  setToken
+}

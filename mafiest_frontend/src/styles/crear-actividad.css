@@ -1,68 +1,92 @@
+/* === CONTENEDOR PRINCIPAL === */
 .crear-actividad-form {
-  max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 850px;
+  margin: 3rem auto;
+  padding: 2.5rem 2rem;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease-in-out;
 }
 
+.crear-actividad-form:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* === TÍTULO === */
 .form-title {
-  color: #333;
+  color: #1e293b;
   margin-bottom: 2rem;
   text-align: center;
-  font-size: 1.8rem;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
 
+/* === CAMPOS DEL FORMULARIO === */
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .form-group label {
   display: block;
-  margin-bottom: 0.5rem;
-  color: #555;
-  font-weight: 500;
+  margin-bottom: 0.6rem;
+  color: #334155;
+  font-weight: 600;
+  font-size: 1rem;
 }
 
 .form-control {
   width: 100%;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 0.85rem 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
   font-size: 1rem;
+  background-color: #f9fafb;
+  transition: all 0.2s ease-in-out;
 }
 
 .form-control:focus {
   outline: none;
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  border-color: #3b82f6;
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
 }
 
 textarea.form-control {
-  min-height: 100px;
+  min-height: 120px;
   resize: vertical;
 }
 
+/* === TEXTO DE AYUDA === */
 .form-text {
   font-size: 0.875rem;
-  color: #666;
-  margin-top: 0.25rem;
+  color: #6b7280;
+  margin-top: 0.3rem;
 }
 
+/* === SECCIÓN DE PREGUNTAS === */
 .preguntas-section {
-  margin-top: 2rem;
-  border-top: 1px solid #eee;
-  padding-top: 1rem;
+  margin-top: 2.5rem;
+  border-top: 2px solid #e2e8f0;
+  padding-top: 1.5rem;
 }
 
 .pregunta-container {
-  background-color: #f8f9fa;
+  background-color: #f1f5f9;
   padding: 1.5rem;
-  border-radius: 6px;
+  border-radius: 10px;
   margin-bottom: 1.5rem;
+  border-left: 4px solid #3b82f6;
+  transition: all 0.2s ease-in-out;
 }
 
+.pregunta-container:hover {
+  background-color: #e2e8f0;
+}
+
+/* === ENCABEZADO DE PREGUNTA === */
 .pregunta-header {
   display: flex;
   justify-content: space-between;
@@ -72,9 +96,12 @@ textarea.form-control {
 
 .pregunta-header h4 {
   margin: 0;
-  color: #333;
+  color: #1e293b;
+  font-size: 1.1rem;
+  font-weight: 600;
 }
 
+/* === OPCIONES === */
 .opcion-container {
   display: flex;
   align-items: center;
@@ -86,61 +113,87 @@ textarea.form-control {
   flex: 1;
 }
 
-.btn-eliminar {
-  padding: 0.5rem 1rem;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 4px;
+/* === BOTONES === */
+.btn-eliminar,
+.btn-agregar,
+.btn-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-weight: 600;
   cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  transition: all 0.25s ease-in-out;
+}
+
+/* Botón eliminar */
+.btn-eliminar {
+  background-color: #ef4444;
+  color: white;
+  padding: 0.6rem 1rem;
 }
 
 .btn-eliminar:hover {
-  background-color: #c82333;
+  background-color: #dc2626;
+  transform: translateY(-2px);
 }
 
+/* Botón agregar */
 .btn-agregar {
-  display: block;
   width: 100%;
-  padding: 0.75rem;
-  background-color: #28a745;
+  padding: 0.85rem;
+  background-color: #22c55e;
   color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  font-size: 1.05rem;
   margin-top: 1rem;
 }
 
 .btn-agregar:hover {
-  background-color: #218838;
+  background-color: #16a34a;
+  transform: translateY(-2px);
 }
 
+/* === ACCIONES DEL FORMULARIO === */
 .form-actions {
-  margin-top: 2rem;
+  margin-top: 2.5rem;
   text-align: center;
 }
 
 .btn-submit {
-  padding: 0.75rem 2rem;
-  background-color: #007bff;
+  padding: 0.85rem 2.5rem;
+  background-color: #2563eb;
   color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.2s;
+  font-size: 1.1rem;
+  box-shadow: 0 6px 15px rgba(37, 99, 235, 0.25);
 }
 
 .btn-submit:hover {
-  background-color: #0056b3;
+  background-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(37, 99, 235, 0.35);
 }
 
+/* === INPUTS ESPECIALES === */
 input[type="file"].form-control {
   padding: 0.5rem;
+  background: #f9fafb;
 }
 
 input[type="radio"] {
-  width: 1.25rem;
-  height: 1.25rem;
-  margin-right: 0.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
+  accent-color: #3b82f6;
+  margin-right: 0.6rem;
+}
+
+/* === ANIMACIÓN SUTIL === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.crear-actividad-form {
+  animation: fadeInUp 0.4s ease-out;
 }

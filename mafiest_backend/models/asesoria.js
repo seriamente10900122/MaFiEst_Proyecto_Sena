@@ -1,41 +1,80 @@
-const { DataTypes } = require('sequelize');
-const sequelize = require('./index').sequelize;
-
+module.exports = (sequelize, DataTypes) => {
 const Asesoria = sequelize.define('Asesoria', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
   },
-  userId: {
+  titulo: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  descripcion: {
+    type: DataTypes.TEXT,
+    allowNull: false
+  },
+  fecha: {
+    type: DataTypes.DATEONLY,
+    allowNull: false
+  },
+  horaInicio: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: 'hora_inicio'
+  },
+  horaFin: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    field: 'hora_fin'
+  },
+  lugar: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  precio: {
     type: DataTypes.INTEGER,
     allowNull: false
   },
-  message: {
-    type: DataTypes.TEXT,
-    allowNull: false
+  docenteId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: 'docente_id',
+    references: {
+      model: 'users',
+      key: 'id'
+    }
   },
-  profesorAsignado: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
-  precio: {
-    type: DataTypes.DECIMAL(10, 2),
-    allowNull: true
+  estudianteId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+    field: 'estudiante_id',
+    references: {
+      model: 'users',
+      key: 'id'
+    }
   },
   estado: {
-    type: DataTypes.ENUM('pendiente', 'respondida'),
-    defaultValue: 'pendiente'
-  },
-  respuesta: {
-    type: DataTypes.TEXT,
-    allowNull: true
-  },
-  createdAt: {
-    type: DataTypes.DATE,
-    allowNull: false,
-    defaultValue: DataTypes.NOW
+    type: DataTypes.ENUM('pendiente', 'programada', 'cancelada'),
+    defaultValue: 'programada'
   }
+}, {
+  tableName: 'asesorias',
+  timestamps: true,
+  underscored: true
 });
 
-module.exports = Asesoria;
+Asesoria.associate = (models) => {
+  Asesoria.belongsTo(models.User, {
+    foreignKey: 'docenteId',
+    targetKey: 'id',
+    as: 'docente'
+  });
+  Asesoria.belongsTo(models.User, {
+    foreignKey: 'estudianteId',
+    targetKey: 'id',
+    as: 'estudiante'
+  });
+};
+
+return Asesoria;
+};

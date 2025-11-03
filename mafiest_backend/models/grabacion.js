@@ -1,6 +1,4 @@
-const { DataTypes } = require('sequelize');
-const { sequelize } = require('../db');
-
+module.exports = (sequelize, DataTypes) => {
 const Grabacion = sequelize.define('Grabacion', {
   id: {
     type: DataTypes.INTEGER,
@@ -23,13 +21,17 @@ const Grabacion = sequelize.define('Grabacion', {
     type: DataTypes.INTEGER,
     allowNull: false,
     references: {
-      model: 'Users',
+      model: 'users',
       key: 'id'
     }
   },
   grupoId: {
     type: DataTypes.INTEGER,
-    allowNull: true
+    allowNull: true,
+    references: {
+      model: 'grupos',
+      key: 'id'
+    }
   },
   tipo: {
     type: DataTypes.ENUM('general', 'grupal'),
@@ -41,4 +43,15 @@ const Grabacion = sequelize.define('Grabacion', {
   timestamps: true
 });
 
-module.exports = Grabacion;
+Grabacion.associate = (models) => {
+  Grabacion.belongsTo(models.User, {
+    foreignKey: 'userId',
+    as: 'usuario'
+  });
+  Grabacion.belongsTo(models.Grupo, {
+    foreignKey: 'grupoId',
+    as: 'grupo'
+  });
+};
+return Grabacion;
+};

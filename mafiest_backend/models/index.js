@@ -1,75 +1,59 @@
 const { sequelize } = require('../db');
-const Grabacion = require('./grabacion');
-const User = require('./user');
-const Contacto = require('./contacto');
-const Actividad = require('./actividad');
-const Asesoria = require('./asesoria');
-const RespuestaActividad = require('./respuestaActividad');
-// Asociaciones RespuestaActividad
-RespuestaActividad.belongsTo(User, { foreignKey: 'userId', as: 'usuario' });
-RespuestaActividad.belongsTo(Actividad, { foreignKey: 'actividadId', as: 'actividad' });
-User.hasMany(RespuestaActividad, { foreignKey: 'userId', as: 'respuestasActividades' });
-Actividad.hasMany(RespuestaActividad, { foreignKey: 'actividadId', as: 'respuestas' });
+const { DataTypes } = require('sequelize');
 
-// Asociaciones Grabacion
-Grabacion.belongsTo(User, {
-  foreignKey: 'userId',
-  as: 'user'
-});
-User.hasMany(Grabacion, {
-  foreignKey: 'userId',
-  as: 'grabaciones'
-});
-// Asociaciones Actividad
-Actividad.belongsTo(User, {
-  foreignKey: 'creadorId',
-  as: 'autor'
-});
-User.hasMany(Actividad, {
-  foreignKey: 'creadorId',
-  as: 'actividades'
-});
 
-// Asociaciones Asesoria
-Asesoria.belongsTo(User, {
-  foreignKey: 'userId',
-  as: 'asesor'
-});
-User.hasMany(Asesoria, {
-  foreignKey: 'userId',
-  as: 'asesorias'
-});
+const User = require('./user')(sequelize, DataTypes);
+const Grupo = require('./grupo')(sequelize, DataTypes);
+const Grabacion = require('./grabacion')(sequelize, DataTypes);
+const Contacto = require('./contacto')(sequelize, DataTypes);
+const Actividad = require('./actividad')(sequelize, DataTypes);
+const Asesoria = require('./asesoria')(sequelize, DataTypes);
+const AsesoriasUsuarios = require('./asesorias_usuarios')(sequelize);
 
-// Test database connection
-const testConnection = async () => {
-  try {
-    await sequelize.authenticate();
-    console.log('Database connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-    process.exit(1);
-  }
-};
 
-// Sync all models
-const syncModels = async () => {
-  try {
-    await sequelize.sync({ alter: true });
-    console.log('Models synchronized successfully');
-  } catch (error) {
-    console.error('Error synchronizing models:', error);
-    process.exit(1);
-  }
-};
+const RespuestaActividad = require('./respuestaActividad')(sequelize, DataTypes);
+const Retroalimentacion = require('./retroalimentacion')(sequelize, DataTypes);
 
-module.exports = {
-  sequelize,
-  Grabacion,
+
+// Tabla intermedia User-Grupo
+const GrupoUsuario = sequelize.define('GrupoUsuario', {}, { tableName: 'grupo_usuarios' });
+
+
+const models = {
   User,
+  Grupo,
+  Grabacion,
   Contacto,
   Actividad,
   Asesoria,
   RespuestaActividad,
+  GrupoUsuario,
+  Retroalimentacion,
+  AsesoriasUsuarios
+};
+
+Object.values(models).forEach(model => {
+  if (typeof model.associate === 'function') {
+    model.associate(models);
+  }
+});
+
+async function testConnection() {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+}
+
+async function syncModels() {
+  await sequelize.sync({ force: false });
+}
+
+module.exports = {
+  sequelize,
+  ...models,
   testConnection,
   syncModels
 };

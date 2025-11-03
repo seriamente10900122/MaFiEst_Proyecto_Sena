@@ -1,1 +1,161 @@
-/* Estilos eliminados, ahora todo el diseño es inline en el componente para mayor control visual y contraste */
+/* Contenedor principal */
+.about-container {
+  min-height: 100vh;
+  background: #1a2238;
+  padding-bottom: 4rem;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.about-title {
+  text-align: center;
+  margin-bottom: 2em;
+  color: #fff;
+  font-weight: 800;
+  font-size: 2.2rem;
+  letter-spacing: 1px;
+  position: relative;
+}
+
+.about-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background: #e94560;
+  margin: 0.5rem auto 0;
+  border-radius: 2px;
+}
+
+.about-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+  padding: 2.5rem 2rem;
+  transition: transform 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+}
+
+.about-intro {
+  color: #222;
+  font-size: 1.15em;
+  margin-bottom: 1.5em;
+  line-height: 1.7;
+}
+
+.about-section {
+  margin: 2em 0;
+}
+
+.about-section-title {
+  color: #222;
+  font-size: 1.1em;
+  margin-bottom: 1em;
+  font-weight: 600;
+}
+
+.about-list {
+  list-style-type: none;
+  margin-left: 1em;
+  margin-top: 1em;
+  color: #222;
+}
+
+.about-list li {
+  margin-bottom: 0.8em;
+  position: relative;
+  padding-left: 1.5em;
+  transition: transform 0.2s ease;
+}
+
+.about-list li::before {
+  content: '•';
+  color: #e94560;
+  font-size: 1.5em;
+  position: absolute;
+  left: 0;
+  top: -0.2em;
+}
+
+.about-list li:hover {
+  transform: translateX(5px);
+  color: #e94560;
+}
+
+.about-text {
+  color: #222;
+  font-size: 1.1em;
+  margin-bottom: 1.5em;
+  line-height: 1.7;
+}
+
+.about-text:last-child {
+  margin-bottom: 0;
+}
+
+.highlight-text {
+  color: #e94560;
+  font-weight: 600;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-card {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .about-content {
+    padding: 24px 16px;
+  }
+
+  .about-title {
+    font-size: 1.8rem;
+  }
+
+  .about-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .about-intro {
+    font-size: 1.1em;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-title {
+    font-size: 1.6rem;
+  }
+
+  .about-card {
+    padding: 1.5rem 1rem;
+  }
+
+  .about-intro,
+  .about-text {
+    font-size: 1em;
+  }
+
+  .about-section {
+    margin: 1.5em 0;
+  }
+}

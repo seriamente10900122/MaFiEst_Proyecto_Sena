@@ -1,0 +1,125 @@
+.login-container {
+  min-height: 100vh;
+  background: #e94560;
+  background-image: linear-gradient(135deg, #e94560 0%, #c81d3e 100%);
+}
+
+.login-content {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  position: relative;
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #fff;
+}
+
+.login-title {
+  font-weight: 800;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.login-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.login-form-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  padding: 2.5rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.login-form-container:hover {
+  transform: translateY(-5px);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #1a2238;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #e94560;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+}
+
+.form-input:hover {
+  border-color: #c81d3e;
+}
+
+.submit-button {
+  width: 100%;
+  background: #e94560;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.submit-button:hover {
+  background: #c81d3e;
+  transform: translateY(-1px);
+}
+
+.submit-button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.nav-link {
+  color: #666;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #e94560;
+}
+
+.logo-text {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  letter-spacing: 2px;
+}

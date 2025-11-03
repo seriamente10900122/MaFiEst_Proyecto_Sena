@@ -1,0 +1,150 @@
+.contactanos-container {
+  min-height: 100vh;
+  background: #1a2238;
+  background-image: linear-gradient(135deg, #1a2238 0%, #0b1027 100%);
+}
+
+.contactanos-content {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px 20px;
+  position: relative;
+}
+
+.contactanos-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  color: #fff;
+}
+
+.contactanos-title {
+  font-weight: 800;
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.contactanos-subtitle {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+.contactanos-form-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  padding: 2.5rem;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+.contactanos-form-container:hover {
+  transform: translateY(-5px);
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #1a2238;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  transition: all 0.3s ease;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #e94560;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+}
+
+.form-input:hover {
+  border-color: #c81d3e;
+}
+
+.form-textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  min-height: 120px;
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: #e94560;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.1);
+}
+
+.submit-button {
+  background: #e94560;
+  color: white;
+  border: none;
+  padding: 14px 28px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+  background: #c81d3e;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(200, 29, 62, 0.2);
+}
+
+.submit-button:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .contactanos-content {
+    padding: 20px;
+  }
+
+  .contactanos-title {
+    font-size: 2.5rem;
+  }
+
+  .contactanos-form-container {
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contactanos-title {
+    font-size: 2rem;
+  }
+
+  .contactanos-subtitle {
+    font-size: 1rem;
+  }
+
+  .form-input,
+  .form-textarea {
+    padding: 10px;
+  }
+
+  .submit-button {
+    padding: 12px 24px;
+  }
+}

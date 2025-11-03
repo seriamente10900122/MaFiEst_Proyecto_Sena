@@ -1,0 +1,168 @@
+/* --- CONTENEDOR PRINCIPAL --- */
+.gestion-usuarios-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #0d1117;
+  padding: 2rem 1rem;
+  color: #fff;
+}
+
+/* --- TÍTULOS --- */
+.gestion-usuarios-title {
+  font-weight: 800;
+  font-size: 2.4rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #e2e8f0;
+}
+
+.gestion-usuarios-list-title {
+  font-weight: 700;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  color: #cbd5e1;
+}
+
+/* --- BOTONES PRINCIPALES --- */
+.gestion-usuarios-btns {
+  display: flex;
+  justify-content: center;
+  gap: 1.2rem;
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.gestion-usuarios-btns button {
+  padding: 0.8rem 1.4rem;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.gestion-usuarios-btns button:first-child {
+  background: #0ea5e9;
+  color: white;
+}
+
+.gestion-usuarios-btns button:last-child {
+  background: #6366f1;
+  color: white;
+}
+
+.gestion-usuarios-btns button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+}
+
+/* --- GRID DE TARJETAS --- */
+.user-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* --- TARJETAS DE USUARIO --- */
+.card {
+  background: linear-gradient(135deg, #1b2437, #121829);
+  color: #fff;
+  border-radius: 18px;
+  padding: 1.5rem;
+  border: 1.5px solid rgba(255,255,255,0.05);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  transition: 0.25s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  position: relative;
+}
+
+/* HOVER BONITO */
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.35);
+  border-color: #3b82f6;
+}
+
+/* --- FOTO DE PERFIL (CIRCULAR) --- */
+.avatar-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.avatar-circle img {
+  border: 3px solid #ffffff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease;
+}
+
+.avatar-circle img:hover {
+  transform: scale(1.1);
+}
+
+/* --- TEXTOS INTERNOS --- */
+.card strong {
+  color: #93c5fd;
+}
+
+.card p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #e2e8f0;
+  margin: 0;
+  padding: 0;
+}
+
+/* --- BADGES DE ROL --- */
+.rol-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: #fff;
+}
+
+.rol-administrador {
+  background: #ef4444;
+}
+
+.rol-docente {
+  background: #3b82f6;
+}
+
+.rol-estudiante {
+  background: #22c55e;
+}
+
+.rol-independiente {
+  background: #a855f7;
+}
+
+/* --- BOTÓN ELIMINAR --- */
+.card button {
+  margin-top: 0.6rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  background: #1e40af;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.2s;
+  align-self: flex-start;
+}
+
+.card button:hover {
+  background: #1d4ed8;
+  transform: scale(1.03);
+}

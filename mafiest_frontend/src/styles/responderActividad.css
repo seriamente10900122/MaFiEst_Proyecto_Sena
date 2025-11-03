@@ -1,0 +1,116 @@
+/* responderActividad.css - Mejora visual para el formulario de respuesta de actividades */
+
+.card.shadow-lg.mx-auto {
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  border-radius: 18px;
+  background: #f8f9fa;
+}
+
+.card-header.bg-primary {
+  background: linear-gradient(90deg, #007bff 60%, #0056b3 100%);
+  border-radius: 18px 18px 0 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+  .btn-primary {
+    background: linear-gradient(90deg, #2196f3 70%, #1769aa 100%);
+    color: #fff;
+    border: none;
+    font-weight: 700;
+    font-size: 1.08rem;
+    padding: 0.7rem 2.2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(33,150,243,0.13);
+    transition: background 0.2s, box-shadow 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .btn-primary:hover {
+    background: linear-gradient(90deg, #1769aa 70%, #2196f3 100%);
+    box-shadow: 0 6px 24px rgba(33,150,243,0.18);
+  }
+
+
+.btn-primary:hover {
+  background: linear-gradient(90deg, #0056b3 70%, #007bff 100%);
+}
+
+.btn-secondary {
+  background: #f1f3f6;
+  color: #333;
+  border: none;
+  font-weight: 500;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+}
+
+.form-control {
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  font-size: 1rem;
+  padding: 0.7rem 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-label {
+  font-weight: 600;
+  color: #0056b3;
+}
+
+.form-check-input:checked {
+  background-color: #007bff;
+  border-color: #0056b3;
+}
+
+.form-check-label {
+  font-weight: 500;
+  color: #333;
+}
+
+.bg-light {
+  background: #e9ecef;
+}
+
+.bg-white {
+  background: #fff;
+}
+
+.alert {
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.d-flex.gap-3.justify-content-center.mt-4 {
+  gap: 1.5rem !important;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .card-body {
+    padding: 1rem 0.5rem;
+  }
+  /* Tarjeta principal */
+  .card.shadow-lg.mx-auto {
+    box-shadow: 0 6px 32px rgba(33,150,243,0.10);
+    border-radius: 18px;
+    background: #f6f8fa;
+    border: 1px solid #e3eaf3;
+  }
+  .card-header.bg-primary {
+    background: linear-gradient(90deg, #2196f3 60%, #1769aa 100%);
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 2px 8px rgba(33,150,243,0.08);
+  }
+  .card-body {
+    padding: 2.2rem 1.7rem;
+  }
+
+  /* Centrado y agrupación */
+  .d-flex.gap-3.justify-content-center.mt-4 {
+    gap: 2.2rem !important;
+    justify-content: center !important;
+  }
+  .card.shadow-lg.mx-auto {
+    margin-top: 16px !important;
+  }
+}

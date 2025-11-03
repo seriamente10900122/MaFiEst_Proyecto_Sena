@@ -6,6 +6,22 @@ let token = null
 const setToken = newToken => {
   token = `Bearer ${newToken}`
 }
+// Asignar asesoría a solicitud pendiente (solo admin)
+const asignar = async (solicitudId, datos) => {
+  const config = {
+    headers: { Authorization: token }
+  }
+  const response = await axios.post(`${BASE_URL}/asesorias/asignar/${solicitudId}`, datos, config);
+  return response.data;
+}
+// Solicitar asesoría (estudiante/independiente)
+const solicitar = async (solicitud) => {
+  const config = {
+    headers: { Authorization: token }
+  }
+  const response = await axios.post(`${BASE_URL}/asesorias/solicitar`, solicitud, config);
+  return response.data;
+}
 
 // Obtener todas las asesorías (solo admin)
 const getAll = async () => {
@@ -34,13 +50,19 @@ const getMisAsesorias = async () => {
   return response.data
 }
 
-// Crear una nueva asesoría
+// Crear una nueva asesoría (envía docenteNombre si existe)
 const create = async (asesoria) => {
   const config = {
     headers: { Authorization: token }
   }
-  const response = await axios.post(`${BASE_URL}/asesorias`, asesoria, config)
-  return response.data
+  // Si existe nombreDocente, lo envía como docenteNombre
+  const payload = { ...asesoria };
+  if (asesoria.nombreDocente) {
+    payload.docenteNombre = asesoria.nombreDocente;
+    delete payload.nombreDocente;
+  }
+  const response = await axios.post(`${BASE_URL}/asesorias`, payload, config);
+  return response.data;
 }
 
 // Actualizar una asesoría (incluye responder)
@@ -88,5 +110,7 @@ export default {
   update,
   responder,
   remove,
-  getPendientes
+  getPendientes,
+  solicitar
+  ,asignar
 }
