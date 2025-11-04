@@ -8,7 +8,6 @@
     "dev": "nodemon index.js",
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "lint": "eslint .",
-    "setup": "node utils/setupDb.js",
     "build": "npm ci",
     "postinstall": "npm run setup"
   },
