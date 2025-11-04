@@ -1,7 +1,7 @@
 # MaFiEst - Plataforma Educativa
 
 ## Descripción
-MaFiEst es una plataforma educativa diseñada para facilitar el aprendizaje de matemáticas y física. Permite la gestión de usuarios, grupos, actividades y asesorías.
+MaFiEst es una plataforma educativa diseñada para facilitar el aprendizaje de matemáticas. Permite la gestión de usuarios, grupos, actividades y asesorías.
 
 ## Estructura del Proyecto
 - `mafiest_frontend/`: Aplicación React (Vite)

@@ -15,8 +15,8 @@ const start = async () => {
     logger.info('Database tables synchronized');
 
     // Start server with error handling
-    const server = app.listen(config.PORT, () => {
-      logger.info(`Server running on port ${config.PORT}`);
+    const server = app.listen(process.env.PORT || config.PORT, '0.0.0.0', () => {
+      logger.info(`Server running on port ${process.env.PORT || config.PORT}`);
     });
 
     // Handle server errors

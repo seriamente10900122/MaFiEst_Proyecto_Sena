@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const config = {
-  PORT: process.env.PORT || 3001,
+  PORT: parseInt(process.env.PORT || '3001'),
   DATABASE_CONFIG: process.env.DATABASE_URL ? {
     url: process.env.DATABASE_URL,
     dialect: 'postgres',
