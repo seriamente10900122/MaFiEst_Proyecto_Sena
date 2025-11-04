@@ -9,8 +9,8 @@
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand",
     "lint": "eslint .",
     "setup": "node utils/setupDb.js",
-    "build": "npm install",
-    "postbuild": "npm run setup"
+    "build": "npm ci",
+    "postinstall": "npm run setup"
   },
   "keywords": [],
   "author": "",

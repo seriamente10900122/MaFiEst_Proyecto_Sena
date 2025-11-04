@@ -15,8 +15,14 @@ const start = async () => {
     logger.info('Database tables synchronized');
 
     // Start server with error handling
-    const server = app.listen(process.env.PORT || config.PORT, '0.0.0.0', () => {
-      logger.info(`Server running on port ${process.env.PORT || config.PORT}`);
+    const PORT = process.env.PORT || config.PORT || 3001;
+    const server = app.listen(PORT, '0.0.0.0', () => {
+      logger.info('Server configuration:', {
+        port: PORT,
+        env: process.env.NODE_ENV,
+        database: process.env.DATABASE_URL ? 'URL configured' : 'Local config'
+      });
+      logger.info(`Server running on port ${PORT}`);
     });
 
     // Handle server errors
