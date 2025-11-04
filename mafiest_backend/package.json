@@ -1,7 +1,7 @@
 {
-  "name": "blog_list",
+  "name": "mafiest_backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Backend para el proyecto MaFiEst",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
