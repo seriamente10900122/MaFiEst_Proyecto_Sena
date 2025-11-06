@@ -98,7 +98,7 @@ asesoriasRouter.get('/:id', userExtractor, async (req, res) => {
 });
 
 // Asignar datos completos a una solicitud pendiente y crear la asesoría
-asesoriasRouter.post('/asignar/:solicitudId', userExtractor, permitRoles('administrador'), async (req, res) => {
+asesoriasRouter.post('/asignar/:solicitudId', userExtractor, permitRoles('administrador', 'docente'), async (req, res) => {
   try {
     const { solicitudId } = req.params;
   let { fecha, horaInicio, horaFin, lugar, docenteNombre, precio } = req.body;
